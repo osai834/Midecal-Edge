@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1 id="download-page-title" class="download-page-title">Download</h1>
+    <section class="flex">
+        <div>
+            <img src="./v1.png" alt="v1">
+            <h1 class="titl">v1</h1>
+            <div class="dis">
+                <h2>local storeg</h2>
+                <h2>No servar</h2>
+                <h2>No lock scren</h2>
+                <h2>low securty</h2>
+            </div>
+            <div class="price">
+                <h2>1230</h2>
+            </div>
+            <button class="buy-button" data-plan="V1" data-price="1230">Download</button>
+        </div>
+        <div>
+            <img src="./image.png" alt="basc">
+            <h1 class="titl">V2</h1>
+            <div class="dis">
+                <h2>local storeg</h2>
+                <h2>No servar</h2>
+                <h2>No lock scren</h2>
+                <h2>low securty</h2>
+            </div>
+            <div class="price">
+                <h2>1250</h2>
+            </div>
+            <button class="buy-button" data-plan="V2" data-price="1250">Download</button>
+        </div>
+        <div>
+            <img src="./ba.png" alt="">
+            <h1 class="titl">Basc servar</h1>
+            <div class="dis">
+                <h2>servaring</h2>
+                <h2> servar</h2>
+                <h2>No lock scren</h2>
+                <h2>low securty</h2>
+            </div>
+            <div class="price">
+                <h2>1300</h2>
+            </div>
+            <button class="buy-button" data-plan="Basc servar" data-price="1300">Download</button>
+        </div>
+        <div>
+            <img src="./pro.png" alt="pro">
+            <h1 class="titl">pro</h1>
+            <div class="dis">
+                <h2>servaring</h2>
+                <h2>servar</h2>
+                <h2>lock scren</h2>
+                <h2>securty</h2>
+            </div>
+            <div class="price">
+                <h2>1900</h2>
+            </div>
+            <button class="buy-button" data-plan="Pro" data-price="1900">Download</button>
+        </div>
+        <div>
+            <img src="./pro.png" alt="pro">
+            <h1 class="titl">ultra</h1>
+            <div class="dis">
+                <h2>servaring</h2>
+                <h2>servar</h2>
+                <h2>lock scren</h2>
+                <h2>admin acssblty</h2>
+                <h2>securty</h2>
+            </div>
+            <div class="price">
+                <h2>2100</h2>
+            </div>
+            <button class="buy-button" data-plan="Ultra" data-price="2100">Download</button>
+        </div>
+    </section>
+    <script>
+        const whatsappNumber = "201012139119";
+        const buttons = document.querySelectorAll(".buy-button");
+        const params = new URLSearchParams(window.location.search);
+        const clinicType = params.get("clinic") || "Dentac";
+
+        const pageTitle = document.getElementById("download-page-title");
+        pageTitle.textContent = clinicType;
+        document.title = `${clinicType} Download`;
+
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const plan = button.dataset.plan;
+                const price = button.dataset.price;
+                const approved = window.confirm(`تأكيد طلب برنامج ${clinicType} - باقة ${plan} بسعر ${price}؟`);
+
+                if (!approved) {
+                    return;
+                }
+
+                const text = encodeURIComponent(`أريد طلب برنامج ${clinicType} - باقة ${plan} بسعر ${price}.`);
+                window.open(`https://wa.me/${whatsappNumber}?text=${text}`, "_blank");
+            });
+        });
+    </script>
+</body>
+
+</html>
